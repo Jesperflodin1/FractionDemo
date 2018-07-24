@@ -8,14 +8,14 @@
 #import "Fraction.h"
 
 @implementation Fraction
-- (Fraction *)initWithNumerator:(int)numerator denominator:(int)denominator {
-    if (denominator == 0) {
-        __unused NSInteger divisionByZero = numerator/denominator;
+- (Fraction *)initWithNumerator:(int)num denominator:(int)denom {
+    if (denom == 0) {
+        __unused NSInteger divisionByZero = num/denom;
     }
     self = [super init];
     if (self) {
-        _numerator = numerator;
-        _denominator = denominator;
+        self.numerator = num;
+        self.denominator = denom;
     }
     return self;
 }
@@ -31,8 +31,8 @@
 + (Fraction *)fractionWithInteger:(int)integer {
     return [[self alloc] initWithNumerator:integer denominator:1];
 }
-+ (Fraction *)fractionWithNumerator:(int)numerator denominator:(int)denominator {
-    return [[self alloc] initWithNumerator:numerator denominator:denominator];
++ (Fraction *)fractionWithNumerator:(int)num denominator:(int)denom {
+    return [[self alloc] initWithNumerator:num denominator:denom];
 }
 
 - (void)setNumerator:(NSInteger)num overDenominator:(NSInteger)denom {

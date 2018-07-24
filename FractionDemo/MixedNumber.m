@@ -10,8 +10,65 @@
 
 @implementation MixedNumber
 - (MixedNumber *)init {
-    return [self initWithNumerator:0 denominator:1];
+    return [self initWithWholeNumber:0 numerator:0 denominator:1];
 }
+- (MixedNumber *)initWithWholeNumber:(NSInteger)number numerator:(NSInteger)num denominator:(NSInteger)denom {
+    if (denom == 0) {
+        __unused NSInteger divisionByZero = num/denom;
+    }
+    self = [super init];
+    if (self) {
+        self.wholeNumber = number;
+        self.numerator = num;
+        self.denominator = denom;
+    }
+    return self;
+}
+- (MixedNumber *)initWithWholeNumber:(NSInteger)number andFraction:(Fraction *)fraction {
+    if ([fraction denominator] == 0) {
+        __unused NSInteger divisionByZero = [fraction numerator]/[fraction denominator];
+    }
+    self = [super init];
+    if (self) {
+        self.wholeNumber = number;
+        self.numerator = [fraction numerator];
+        self.denominator = [fraction denominator];
+    }
+    return self;
+}
+- (MixedNumber *)initWithFraction:(Fraction *)fraction {
+    if ([fraction denominator] == 0) {
+        __unused NSInteger divisionByZero = [fraction numerator]/[fraction denominator];
+    }
+    self = [super init];
+    if (self) {
+        NSInteger number = [fraction numerator]/[fraction denominator]; // whole number. decimals are lost.
+        self.wholeNumber = number;
+        self.numerator = [fraction numerator] - number * [fraction denominator];
+        self.denominator = [fraction denominator];
+    }
+    return self;
+}
+
+- (Fraction *)convertToFraction {
+    Fraction *result = [Fraction fractionWithNumerator:[self denominator]*[self wholeNumber]+[self numerator]
+                                           denominator:[self denominator]];
+    [result reduce];
+    return result;
+}
++ (MixedNumber *)zero {
+    return [[self alloc] init];
+}
++ (MixedNumber *)mixedNumberWithWholeNumber:(int)number numerator:(int)num denominator:(int)denom {
+    return [[self alloc] initWithWholeNumber:number numerator:num denominator:denom];
+}
++ (MixedNumber *)mixedNumberWithWholeNumber:(int)number andFraction:(Fraction *)fraction {
+    return [[self alloc] initWithWholeNumber:number andFraction:fraction];
+}
++ (MixedNumber *)mixedNumberWithFraction:(Fraction *)fraction {
+    return [[self alloc] initWithFraction:fraction];
+}
+
 
 + (MixedNumber *)addMixedNumber:(MixedNumber *)num1 toMixedNumber:(MixedNumber *)num2 {
     MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
@@ -32,13 +89,14 @@
     return result;
 }
 + (MixedNumber *)multiplyMixedNumber:(MixedNumber *)num1 withMixedNumber:(MixedNumber *)num2 {
-    MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
-    // (a+b/c)*(d+e/f)
-    return result;
+    return [MixedNumber mixedNumberWithFraction:
+            [Fraction multiplyFraction:[num1 convertToFraction]
+                          withFraction:[num2 convertToFraction]]];
 }
 + (MixedNumber *)divideMixedNumber:(MixedNumber *)num1 byMixedNumber:(MixedNumber *)num2 {
-    MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
-    return result;
+    return [MixedNumber mixedNumberWithFraction:
+            [Fraction divideFraction:[num1 convertToFraction]
+                          byFraction:[num2 convertToFraction]]];
 }
 
 - (void)add:(MixedNumber *)newMixedNumber {
@@ -56,10 +114,20 @@
     [self reduce];
 }
 - (void)multiply:(MixedNumber *)newMixedNumber {
-    
+    MixedNumber *fractionResult = [MixedNumber mixedNumberWithFraction:
+                                   [Fraction multiplyFraction:[self convertToFraction]
+                                             withFraction:[newMixedNumber convertToFraction]]];
+    [self setWholeNumber:[fractionResult wholeNumber]];
+    [self setNumerator:[fractionResult numerator]];
+    [self setDenominator:[fractionResult denominator]];
 }
 - (void)divide:(MixedNumber *)newMixedNumber {
-    
+    MixedNumber *fractionResult = [MixedNumber mixedNumberWithFraction:
+                                   [Fraction divideFraction:[self convertToFraction]
+                                                 byFraction:[newMixedNumber convertToFraction]]];
+    [self setWholeNumber:[fractionResult wholeNumber]];
+    [self setNumerator:[fractionResult numerator]];
+    [self setDenominator:[fractionResult denominator]];
 }
 
 - (void)setWholeNumber:(NSInteger)number andNumerator:(NSInteger)num overDenominator:(NSInteger)denom {

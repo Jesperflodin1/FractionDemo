@@ -32,8 +32,16 @@ int main (int argc, const char *argv[]) {
     // bFraction is declared previously
     MixedNumber *aMixedNum = [[MixedNumber alloc] init];
     MixedNumber *bMixedNum = [[MixedNumber alloc] init];
-    [aMixedNum setWholeNumber:3 andNumerator:2 overDenominator:4];
-    [bMixedNum setWholeNumber:4 andFraction:bFraction];
+    [aMixedNum setWholeNumber:1 andNumerator:1 overDenominator:1];
+    [bMixedNum setWholeNumber:2 andNumerator:1 overDenominator:2];
+    NSLog(@"aMixedNum is %@", aMixedNum);
+    NSLog(@"After reducing, aMixedNum is"); [aMixedNum reduce]; NSLog(@"%@",aMixedNum);
+    NSLog(@"%@ / %@ = %@",aMixedNum,bMixedNum,[MixedNumber divideMixedNumber:aMixedNum byMixedNumber:bMixedNum]);
+    NSLog(@"%@ / %@ = ",aMixedNum,bMixedNum);
+    [aMixedNum divide:bMixedNum];
+    NSLog(@"%@",aMixedNum);
+    NSLog(@"and back again: %@",[MixedNumber mixedNumberWithFraction:[aMixedNum convertToFraction]]);
+    /*[bMixedNum setWholeNumber:4 andFraction:bFraction];
     
     NSLog(@"aMixedNum is %@", aMixedNum);
     // Uses Fraction's reduce method on the fractional portion of MixedNumber
@@ -41,8 +49,11 @@ int main (int argc, const char *argv[]) {
     
     NSLog(@"Addition: ");
     NSLog(@"%@",aMixedNum); NSLog(@" + "); NSLog(@"%@",bMixedNum); NSLog(@" = ");
-    NSLog(@"%@",[MixedNumber addMixedNumber:aMixedNum toMixedNumber:bMixedNum]);
+    NSLog(@"%@",[MixedNumber addMixedNumber:aMixedNum toMixedNumber:bMixedNum]);*/
     // description is invoked on the return value of the add method
+    
+    
+    
     
     [aMixedNum release];
     [bMixedNum release];
