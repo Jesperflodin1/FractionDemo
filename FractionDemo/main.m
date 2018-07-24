@@ -6,6 +6,7 @@
 //  Copyright © 2018 Jesper Flodin. All rights reserved.
 //
 #import "Fraction.h"
+#import "MixedNumber.h"
 
 int main (int argc, const char *argv[]) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -27,8 +28,27 @@ int main (int argc, const char *argv[]) {
     NSLog(@"%@", aFraction);
     NSLog(@"%@", cFraction);
     
+    // bFraction is declared previously
+    MixedNumber *aMixedNum = [[MixedNumber alloc] init];
+    MixedNumber *bMixedNum = [[MixedNumber alloc] init];
+    [aMixedNum setWholeNumber:3 andNumerator:2 overDenominator:4];
+    [bMixedNum setWholeNumber:4 andFraction:bFraction];
+    
+    NSLog(@"aMixedNum is %@", aMixedNum);
+    // Uses Fraction's reduce method on the fractional portion of MixedNumber
+    NSLog(@"After reducing, aMixedNum is"); [aMixedNum reduce]; NSLog(@"%@",aMixedNum);
+    
+    NSLog(@"Addition: ");
+    NSLog(@"%@",aMixedNum); NSLog(@" + "); NSLog(@"%@",bMixedNum); NSLog(@" = ");
+    NSLog(@"%@",[MixedNumber addMixedNumber:aMixedNum toMixedNumber:bMixedNum]);
+    // display is invoked on the return value of the add method
+    
+    [aMixedNum release];
+    [bMixedNum release];
+    
     [aFraction release];
     [bFraction release];
-    [pool drain];
+    [cFraction release];
+    //[pool drain];
     return 0;
 }
