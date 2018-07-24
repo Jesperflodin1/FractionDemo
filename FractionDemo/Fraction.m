@@ -161,4 +161,10 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"%li/%li",(long) self.numerator, (long)self.denominator];
 }
+
+- (void)dealloc {
+    _numerator = 0;
+    _denominator = 0;
+    [super dealloc];
+}
 @end

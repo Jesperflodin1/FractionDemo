@@ -157,4 +157,7 @@
     return [NSString stringWithFormat:@"%li + %li/%li",(long)self.wholeNumber ,(long)self.numerator, (long)self.denominator];
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
 @end

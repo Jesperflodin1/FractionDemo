@@ -36,4 +36,6 @@
 - (void)reduce;
 
 - (NSString *)description;
+
+- (void)dealloc;
 @end

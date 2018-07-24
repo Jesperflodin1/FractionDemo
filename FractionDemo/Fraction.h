@@ -36,5 +36,6 @@
 - (void)divide:(Fraction *)newFraction;
 
 - (void)reduce;
+- (void)dealloc;
 
 @end
