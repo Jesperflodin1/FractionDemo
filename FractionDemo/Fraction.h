@@ -10,6 +10,14 @@
 @interface Fraction : NSObject
 @property NSInteger numerator;
 @property NSInteger denominator;
+
+- (Fraction *)initWithNumerator:(int)numerator denominator:(int)denominator;
+- (Fraction *)init;
++ (Fraction *)zero;
++ (Fraction *)one;
++ (Fraction *)fractionWithInteger:(int)integer;
++ (Fraction *)fractionWithNumerator:(int)numerator denominator:(int)denominator;
+
 + (Fraction *)addFraction:(Fraction *)frac1 toFraction:(Fraction *)frac2;
 + (Fraction *)subtractFraction:(Fraction *)frac1 fromFraction:(Fraction *)frac2;
 + (Fraction *)multiplyFraction:(Fraction *)frac1 withFraction:(Fraction *)frac2;

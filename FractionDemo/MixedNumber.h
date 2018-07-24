@@ -5,11 +5,15 @@
 //  Created by Jesper Flodin on 2018-07-24.
 //  Copyright © 2018 Jesper Flodin. All rights reserved.
 //
-//#import <Foundation/Foundation.h>
 #import "Fraction.h"
 
 @interface MixedNumber : Fraction;
 @property NSInteger wholeNumber;
+- (MixedNumber *)init;
+- (MixedNumber *)initWithWholeNumber:(NSInteger)wholeNumber numerator:(NSInteger)numerator denominator:(NSInteger)denominator;
+- (MixedNumber *)initWithWholeNumber:(NSInteger)wholeNumber andFraction:(Fraction *)fraction;
+- (MixedNumber *)initWithFraction:(Fraction *)fraction;
+- (Fraction *)convertToFraction:(MixedNumber *)mixedNumber;
 
 + (MixedNumber *)addMixedNumber:(MixedNumber *)num1 toMixedNumber:(MixedNumber *)num2;
 + (MixedNumber *)subtractMixedNumber:(MixedNumber *)num1 fromMixedNumber:(MixedNumber *)num2;

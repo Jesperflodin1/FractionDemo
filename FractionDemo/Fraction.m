@@ -8,6 +8,33 @@
 #import "Fraction.h"
 
 @implementation Fraction
+- (Fraction *)initWithNumerator:(int)numerator denominator:(int)denominator {
+    if (denominator == 0) {
+        __unused NSInteger divisionByZero = numerator/denominator;
+    }
+    self = [super init];
+    if (self) {
+        _numerator = numerator;
+        _denominator = denominator;
+    }
+    return self;
+}
+- (Fraction *)init {
+    return [self initWithNumerator:0 denominator:1];
+}
++ (Fraction *)zero {
+    return [[self alloc] init];
+}
++ (Fraction *)one {
+    return [[self alloc] initWithNumerator:1 denominator:1];
+}
++ (Fraction *)fractionWithInteger:(int)integer {
+    return [[self alloc] initWithNumerator:integer denominator:1];
+}
++ (Fraction *)fractionWithNumerator:(int)numerator denominator:(int)denominator {
+    return [[self alloc] initWithNumerator:numerator denominator:denominator];
+}
+
 - (void)setNumerator:(NSInteger)num overDenominator:(NSInteger)denom {
     _numerator = num;
     if (denom == 0) {

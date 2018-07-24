@@ -9,6 +9,9 @@
 #import "MixedNumber.h"
 
 @implementation MixedNumber
+- (MixedNumber *)init {
+    return [self initWithNumerator:0 denominator:1];
+}
 
 + (MixedNumber *)addMixedNumber:(MixedNumber *)num1 toMixedNumber:(MixedNumber *)num2 {
     MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
@@ -30,6 +33,7 @@
 }
 + (MixedNumber *)multiplyMixedNumber:(MixedNumber *)num1 withMixedNumber:(MixedNumber *)num2 {
     MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
+    // (a+b/c)*(d+e/f)
     return result;
 }
 + (MixedNumber *)divideMixedNumber:(MixedNumber *)num1 byMixedNumber:(MixedNumber *)num2 {
@@ -59,6 +63,9 @@
 }
 
 - (void)setWholeNumber:(NSInteger)number andNumerator:(NSInteger)num overDenominator:(NSInteger)denom {
+    if (denom == 0) {
+        __unused NSInteger divisionByZero = num/denom;
+    }
     self.wholeNumber = number;
     self.numerator = num;
     self.denominator = denom;
