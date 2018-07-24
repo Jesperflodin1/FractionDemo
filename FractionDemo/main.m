@@ -28,6 +28,7 @@ int main (int argc, const char *argv[]) {
     NSLog(@"%@", aFraction);
     NSLog(@"%@", cFraction);
     
+    [bFraction setNumerator:3 overDenominator:6];
     // bFraction is declared previously
     MixedNumber *aMixedNum = [[MixedNumber alloc] init];
     MixedNumber *bMixedNum = [[MixedNumber alloc] init];
@@ -41,7 +42,7 @@ int main (int argc, const char *argv[]) {
     NSLog(@"Addition: ");
     NSLog(@"%@",aMixedNum); NSLog(@" + "); NSLog(@"%@",bMixedNum); NSLog(@" = ");
     NSLog(@"%@",[MixedNumber addMixedNumber:aMixedNum toMixedNumber:bMixedNum]);
-    // display is invoked on the return value of the add method
+    // description is invoked on the return value of the add method
     
     [aMixedNum release];
     [bMixedNum release];

@@ -11,36 +11,51 @@
 @implementation MixedNumber
 
 + (MixedNumber *)addMixedNumber:(MixedNumber *)num1 toMixedNumber:(MixedNumber *)num2 {
-    // Store result in "result"
     MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
-    result.wholeNumber = num1.wholeNumber + num2.wholeNumber;
-    result.numerator = num1.numerator * num2.denominator + num1.denominator * num2.numerator;
-    result.denominator = num1.denominator * num2.denominator;
+    [result setWholeNumber: [num1 wholeNumber] + [num2 wholeNumber]];
+    [result setNumerator: [num1 numerator] * [num2 denominator] + [num1 denominator] * [num2 numerator]];
+    [result setDenominator: [num1 denominator] * [num2 denominator]];
     
-    // Reduce
-    if (result.numerator > result.denominator) {
-        NSInteger extra = result.numerator / result.denominator;
-        result.wholeNumber += extra;    // Taking advantage of integer division
-        result.numerator -= extra * result.denominator;
-        
-        NSInteger u = result.numerator;
-        NSInteger v = result.denominator;
-        NSInteger temp = 0;
-        
-        // Euclid's procedure to find GCD (Greatest Common Denominator)
-        // Don't worry about how this works, exactly.
-        
-        while (v != 0) {
-            temp = u % v;
-            u = v;
-            v = temp;
-        }
-        
-        result.numerator /= u;
-        result.denominator /= u;
-    }
-    
+    [result reduce];
     return result;
+}
++ (MixedNumber *)subtractMixedNumber:(MixedNumber *)num1 fromMixedNumber:(MixedNumber *)num2 {
+    MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
+    [result setWholeNumber: [num2 wholeNumber] - [num1 wholeNumber]];
+    [result setNumerator: [num2 numerator] * [num1 denominator] - [num2 denominator] * [num1 numerator]];
+    [result setDenominator: [num2 denominator] * [num1 denominator]];
+    
+    [result reduce];
+    return result;
+}
++ (MixedNumber *)multiplyMixedNumber:(MixedNumber *)num1 withMixedNumber:(MixedNumber *)num2 {
+    MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
+    return result;
+}
++ (MixedNumber *)divideMixedNumber:(MixedNumber *)num1 byMixedNumber:(MixedNumber *)num2 {
+    MixedNumber *result = [[[MixedNumber alloc] init] autorelease];
+    return result;
+}
+
+- (void)add:(MixedNumber *)newMixedNumber {
+    [self setWholeNumber: [self wholeNumber] + [newMixedNumber wholeNumber]];
+    [self setNumerator: [self numerator] * [newMixedNumber denominator] + [self denominator] * [newMixedNumber numerator]];
+    [self setDenominator: [self denominator] * [newMixedNumber denominator]];
+    
+    [self reduce];
+}
+- (void)subtract:(MixedNumber *)newMixedNumber {
+    [self setWholeNumber: [self wholeNumber] - [newMixedNumber wholeNumber]];
+    [self setNumerator: [self numerator] * [newMixedNumber denominator] - [self denominator] * [newMixedNumber numerator]];
+    [self setDenominator: [self denominator] * [newMixedNumber denominator]];
+    
+    [self reduce];
+}
+- (void)multiply:(MixedNumber *)newMixedNumber {
+    
+}
+- (void)divide:(MixedNumber *)newMixedNumber {
+    
 }
 
 - (void)setWholeNumber:(NSInteger)number andNumerator:(NSInteger)num overDenominator:(NSInteger)denom {
@@ -52,6 +67,15 @@
     self.wholeNumber = number;
     self.numerator = frac.numerator;
     self.denominator = frac.denominator;
+}
+
+- (void)reduce {
+    if (self.numerator >= self.denominator) {
+        NSInteger extra = self.numerator / self.denominator;
+        self.wholeNumber += extra;    // Taking advantage of integer division
+        self.numerator -= extra * self.denominator;
+    }
+    [super reduce];
 }
 
 - (NSString *)description {

@@ -16,8 +16,8 @@
     }
     _denominator = denom;
 }
-+ (int)gcdForNumber1:(int)u andNumber2:(int)v {
-    int temp = 0;
++ (NSInteger)gcdForNumber1:(NSInteger)u andNumber2:(NSInteger)v {
+    NSInteger temp = 0;
     // Euclid's procedure to find GCD (Greatest Common Denominator)
     
     while (v != 0) {
@@ -83,7 +83,7 @@
         decimalLength -- ;
     }
     int m = [[components objectAtIndex:1] intValue];
-    int gcd = [Fraction gcdForNumber1:m andNumber2:n];
+    NSInteger gcd = [Fraction gcdForNumber1:m andNumber2:n];
     int numer = m/gcd;
     int deno = n/gcd;
     int fractionnumer = ([[components objectAtIndex:0] intValue] * deno) + numer;
@@ -130,13 +130,7 @@
     self.numerator /= gcd;
     self.denominator /= gcd;
 }
-/*- (void)display {
-    NSString *numeratorString = [[NSString alloc] initWithFormat:@"%ld", (long) self.numerator];
-    NSString *denominatorString = [[NSString alloc] initWithFormat:@"%ld", (long) self.denominator];
-    NSLog(@"%@/%@", numeratorString, denominatorString);
-    [denominatorString release];
-    [numeratorString release];
-}*/
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%li/%li",(long) self.numerator, (long)self.denominator];
 }

@@ -15,7 +15,7 @@
 + (Fraction *)multiplyFraction:(Fraction *)frac1 withFraction:(Fraction *)frac2;
 + (Fraction *)divideFraction:(Fraction *)frac1 byFraction:(Fraction *)frac2;
 + (Fraction *)fractionFromDecimal:(double)decimal;
-+ (int)gcdForNumber1:(int)m andNumber2:(int)n;
++ (NSInteger)gcdForNumber1:(NSInteger)m andNumber2:(NSInteger)n;
 
 //- (void)display;
 - (NSString *)description;
@@ -28,4 +28,5 @@
 - (void)divide:(Fraction *)newFraction;
 
 - (void)reduce;
+
 @end
