@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		249162F02105D33700AB5C30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249162EF2105D33700AB5C30 /* main.m */; };
+		249162F82105D3E600AB5C30 /* Fraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 249162F72105D3E600AB5C30 /* Fraction.m */; };
+		249162FB21070AA400AB5C30 /* MixedNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 249162FA21070AA400AB5C30 /* MixedNumber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		249162EC2105D33700AB5C30 /* FractionDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FractionDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		249162EF2105D33700AB5C30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		249162F62105D3AD00AB5C30 /* Fraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fraction.h; sourceTree = "<group>"; };
+		249162F72105D3E600AB5C30 /* Fraction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fraction.m; sourceTree = "<group>"; };
+		249162FA21070AA400AB5C30 /* MixedNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedNumber.m; sourceTree = "<group>"; };
+		249162FC21070AC800AB5C30 /* MixedNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedNumber.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,10 @@
 		249162EE2105D33700AB5C30 /* FractionDemo */ = {
 			isa = PBXGroup;
 			children = (
+				249162FA21070AA400AB5C30 /* MixedNumber.m */,
+				249162FC21070AC800AB5C30 /* MixedNumber.h */,
+				249162F62105D3AD00AB5C30 /* Fraction.h */,
+				249162F72105D3E600AB5C30 /* Fraction.m */,
 				249162EF2105D33700AB5C30 /* main.m */,
 			);
 			path = FractionDemo;
@@ -119,6 +129,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				249162F02105D33700AB5C30 /* main.m in Sources */,
+				249162F82105D3E600AB5C30 /* Fraction.m in Sources */,
+				249162FB21070AA400AB5C30 /* MixedNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +249,7 @@
 		249162F42105D33800AB5C30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6VG5GK3UD7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -246,6 +259,7 @@
 		249162F52105D33800AB5C30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6VG5GK3UD7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
